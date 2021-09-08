@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import { Typeahead } from 'react-bootstrap-typeahead';
+import 'react-bootstrap-typeahead/css/Typeahead.css';
 
-function App() {
+/* 
+ * Use a simple list of US states as example data.
+ */
+import states from './states';
+
+/* 
+ * Single, very simple component.
+ * Displays React Bootstrap Typehead on top. 
+ * When item is selected, displays result on bottom.
+ */
+const App = () => {
+
+  const [singleSelection, setSingleSelection] = useState([]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="search-container">
+          <h2>Search</h2>
+          <Typeahead
+            id="basic-typeahead-single"
+            onChange={setSingleSelection}
+            options={states}
+            placeholder="Choose State"
+            selected={singleSelection}
+          />
+      </div>
+      <div className="results-container">
+        <h2>Results</h2>
+        <p>{ singleSelection.length == 0 ? "Select an item from the drop down." : singleSelection }</p>
+      </div>
     </div>
   );
 }
