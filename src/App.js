@@ -9,7 +9,7 @@ import states from './states';
 
 /* 
  * Single, very simple component.
- * Displays React Bootstrap Typehead on top. 
+ * Displays React Bootstrap Typeahead on top. 
  * When item is selected, displays result on bottom.
  */
 const App = () => {
